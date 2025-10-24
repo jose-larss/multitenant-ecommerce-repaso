@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Birthstone, Capriola} from "next/font/google";
+import {Capriola} from "next/font/google";
 import "./globals.css";
 
 const caPriola = Capriola({
