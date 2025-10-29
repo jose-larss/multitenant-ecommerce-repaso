@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils"
 import { Poppins } from "next/font/google"
 import Link from "next/link"
 
-import { NavbarItem, navbarItems } from "./NavbarItem"
+import { NavbarItem, navbarItems } from "./navbar-item"
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { NavbarSidebar } from "./navbar-sidebar";
