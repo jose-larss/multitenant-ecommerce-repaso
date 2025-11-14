@@ -1,0 +1,125 @@
+[
+  {
+    "name": "Negocios y Dinero",
+    "color": "#FFB347",
+    "slug": "business-money",
+    "subcategories": [
+      { "name": "Contabilidad", "slug": "accounting" },
+      { "name": "Emprendimiento", "slug": "entrepreneurship" },
+      { "name": "Trabajos y Proyectos Secundarios", "slug": "gigs-side-projects" },
+      { "name": "Inversiones", "slug": "investing" },
+      { "name": "Gestión y Liderazgo", "slug": "management-leadership" },
+      { "name": "Marketing y Ventas", "slug": "marketing-sales" },
+      { "name": "Redes, Carreras y Empleos", "slug": "networking-careers-jobs" },
+      { "name": "Finanzas Personales", "slug": "personal-finance" },
+      { "name": "Bienes Raíces", "slug": "real-estate" }
+    ]
+  },
+  {
+    "name": "Desarrollo de Software",
+    "color": "#7EC8E3",
+    "slug": "software-development",
+    "subcategories": [
+      { "name": "Desarrollo Web", "slug": "web-development" },
+      { "name": "Desarrollo Móvil", "slug": "mobile-development" },
+      { "name": "Desarrollo de Videojuegos", "slug": "game-development" },
+      { "name": "Lenguajes de Programación", "slug": "programming-languages" },
+      { "name": "DevOps", "slug": "devops" }
+    ]
+  },
+  {
+    "name": "Escritura y Publicación",
+    "color": "#D8B5FF",
+    "slug": "writing-publishing",
+    "subcategories": [
+      { "name": "Ficción", "slug": "fiction" },
+      { "name": "No Ficción", "slug": "non-fiction" },
+      { "name": "Blogging", "slug": "blogging" },
+      { "name": "Redacción Publicitaria", "slug": "copywriting" },
+      { "name": "Autoedición", "slug": "self-publishing" }
+    ]
+  },
+  {
+    "name": "Otros",
+    "slug": "other"
+  },
+  {
+    "name": "Educación",
+    "color": "#FFE066",
+    "slug": "education",
+    "subcategories": [
+      { "name": "Cursos en Línea", "slug": "online-courses" },
+      { "name": "Tutorías", "slug": "tutoring" },
+      { "name": "Preparación para Exámenes", "slug": "test-preparation" },
+      { "name": "Aprendizaje de Idiomas", "slug": "language-learning" }
+    ]
+  },
+  {
+    "name": "Superación Personal",
+    "color": "#96E6B3",
+    "slug": "self-improvement",
+    "subcategories": [
+      { "name": "Productividad", "slug": "productivity" },
+      { "name": "Desarrollo Personal", "slug": "personal-development" },
+      { "name": "Atención Plena (Mindfulness)", "slug": "mindfulness" },
+      { "name": "Crecimiento Profesional", "slug": "career-growth" }
+    ]
+  },
+  {
+    "name": "Salud y Fitness",
+    "color": "#FF9AA2",
+    "slug": "fitness-health",
+    "subcategories": [
+      { "name": "Planes de Entrenamiento", "slug": "workout-plans" },
+      { "name": "Nutrición", "slug": "nutrition" },
+      { "name": "Salud Mental", "slug": "mental-health" },
+      { "name": "Yoga", "slug": "yoga" }
+    ]
+  },
+  {
+    "name": "Diseño",
+    "color": "#B5B9FF",
+    "slug": "design",
+    "subcategories": [
+      { "name": "UI/UX", "slug": "ui-ux" },
+      { "name": "Diseño Gráfico", "slug": "graphic-design" },
+      { "name": "Modelado 3D", "slug": "3d-modeling" },
+      { "name": "Tipografía", "slug": "typography" }
+    ]
+  },
+  {
+    "name": "Dibujo y Pintura",
+    "color": "#FFCAB0",
+    "slug": "drawing-painting",
+    "subcategories": [
+      { "name": "Acuarela", "slug": "watercolor" },
+      { "name": "Acrílico", "slug": "acrylic" },
+      { "name": "Óleo", "slug": "oil" },
+      { "name": "Pastel", "slug": "pastel" },
+      { "name": "Carboncillo", "slug": "charcoal" }
+    ]
+  },
+  {
+    "name": "Música",
+    "color": "#FFD700",
+    "slug": "music",
+    "subcategories": [
+      { "name": "Composición de Canciones", "slug": "songwriting" },
+      { "name": "Producción Musical", "slug": "music-production" },
+      { "name": "Teoría Musical", "slug": "music-theory" },
+      { "name": "Historia de la Música", "slug": "music-history" }
+    ]
+  },
+  {
+    "name": "Fotografía",
+    "color": "#FF6B6B",
+    "slug": "photography",
+    "subcategories": [
+      { "name": "Retrato", "slug": "portrait" },
+      { "name": "Paisaje", "slug": "landscape" },
+      { "name": "Fotografía Callejera", "slug": "street-photography" },
+      { "name": "Naturaleza", "slug": "nature" },
+      { "name": "Macro", "slug": "macro" }
+    ]
+  }
+]

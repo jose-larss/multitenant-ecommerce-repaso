@@ -1,17 +1,8 @@
 import Link from "next/link";
-
-interface Category {
-    id: string;
-    name: string;
-    slug: string;
-    color: string;
-    created_at: string;
-    updated_at: string;
-    subcategorias: Category[]; // relaccion recursiva (subcategorias)
-}
+import { CustomCategory } from "../types";
 
 interface SubcategoryMenuProps {
-    category: Category;
+    category: CustomCategory;
     isOpen: boolean;
     position: {top: number, left:number}
 }
@@ -33,9 +24,9 @@ export const SubcategoryMenu = ({category, isOpen, position}: SubcategoryMenuPro
                 -translate-x-0,5 -translate-y-0,5"
             >
                 <div className="">
-                    {category.subcategorias?.map((subcategoria: Category) => (
+                    {category.subcategorias?.map((subcategoria: CustomCategory) => (
                         <Link
-                            href={"/"}
+                            href={`/${category.slug}/${subcategoria.slug}`}
                             key={subcategoria.slug}
                             className="w-full text-left p-4 hover:bg-black hover:text-white flex justify-between 
                             items-center underline font-medium"
