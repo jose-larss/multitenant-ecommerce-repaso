@@ -11,10 +11,10 @@ interface NavbarItemProps {
 
 export const navbarItems = [
     {href: "/", children: "Home"},
-    {href: "/about", children: "About"},
-    {href: "/features", children: "Features"},
-    {href: "/pricing", children: "Pricing"},
-    {href: "/contact", children: "Contact"},
+    {href: "/about", children: "Acerca de"},
+    {href: "/features", children: "Características"},
+    {href: "/pricing", children: "Precios"},
+    {href: "/contact", children: "Contacto"},
 ]
 
 export const NavbarItem = ({href, children, isActive}: NavbarItemProps) => {
