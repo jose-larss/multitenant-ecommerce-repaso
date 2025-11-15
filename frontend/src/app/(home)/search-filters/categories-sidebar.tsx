@@ -1,18 +1,46 @@
-import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
-import { CustomCategory } from "../types";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { useState } from "react";
-import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import { useState, Suspense } from "react";
 import { useRouter } from "next/navigation";
+
+import { useSuspenseQuery } from "@tanstack/react-query";
+
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import { ScrollArea } from "@/components/ui/scroll-area";
+
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import { CustomCategory } from "../types";
 
 interface Props {
     open: boolean;
     onOpenChange: (open: boolean) => void;
-    data: CustomCategory[]
 }
 
-export const CategoriesSidebar = ({open, onOpenChange, data}: Props) => {
+const fetchCategories = async () => {
+    try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories/`, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        if (!response.ok) {
+            //Manejo de errores si el backend devuelve un estado no existoso
+            const errorData = await response.json();
+            console.error("Error en el backend", errorData)
+            return;
+        }
+        //si la respuesta es exitosa
+        return response.json()
+
+    } catch (error) {
+        //Manejo de errores de red o conexion
+        console.error("Error al enviar datos:", error)
+    }
+}
+
+export const CategoriesSidebar = ({open, onOpenChange}: Props) => {
     const router = useRouter();
+    const {data} = useSuspenseQuery({queryKey: ['categories'], queryFn: fetchCategories,})
+
     const [parentCategories, setParentCategories] = useState<CustomCategory[] | null>(null)
     const [selectedCategories, setSelectedCategories] = useState<CustomCategory | null>(null)
 
@@ -80,7 +108,7 @@ export const CategoriesSidebar = ({open, onOpenChange, data}: Props) => {
                             Back
                         </button>
                     )}
-                    {currentCategories.map((category) => (
+                    {currentCategories.map((category: CustomCategory) => (
                         <button
                             key={category.slug}
                             onClick={() => handleCategoryClick(category)}
