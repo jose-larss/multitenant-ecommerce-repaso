@@ -1,7 +1,6 @@
 import { Suspense } from "react";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 
-import { ReactQueryProvider } from "../react-query-provider";
 import { getQueryClient } from "../query-client";
 
 import { Navbar } from "./navbar";
@@ -46,14 +45,12 @@ const Layout = async ({children}: Props) => {
         <div className="flex flex-col min-h-screen">
             <Navbar />
 
-            <ReactQueryProvider>
-                <HydrationBoundary state={dehydrate(queryClient)}>
-                    <Suspense fallback={<SearchFiltersSkeleton />}>
-                        <SearchFilters/>
-                    </Suspense>
-                </HydrationBoundary>
-            </ReactQueryProvider>
-            
+            <HydrationBoundary state={dehydrate(queryClient)}>
+                <Suspense fallback={<SearchFiltersSkeleton />}>
+                    <SearchFilters/>
+                </Suspense>
+            </HydrationBoundary>
+      
             <div className="flex-1 bg-[#F4F4F0]">
                 {children}
             </div>

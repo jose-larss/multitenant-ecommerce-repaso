@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import {Capriola} from "next/font/google";
 import "./globals.css";
 
+import { ReactQueryProvider } from "./react-query-provider";
+import { Toaster } from "@/components/ui/sonner";
+
 const caPriola = Capriola({
   subsets: ["latin"],
   weight: ["400"], // o el peso que necesites
@@ -22,7 +25,11 @@ export default function RootLayout({
       <body
         className={`${caPriola.className} antialiased`}
       >
-        {children}
+        <ReactQueryProvider>
+          {children}
+          <Toaster />
+        </ReactQueryProvider>
+        
       </body>
     </html>
   );
