@@ -12,7 +12,7 @@ class CookieJWTAuthentication(JWTAuthentication):
         try:
             validated_token = self.get_validated_token(raw_token)
         except AuthenticationFailed as e:
-            raise AuthenticationFailed(f"alidación del Token falló: {str(e)}")
+            raise AuthenticationFailed(f"Validación del Token falló: {str(e)}")
         
         try:
             user = self.get_user(validated_token)

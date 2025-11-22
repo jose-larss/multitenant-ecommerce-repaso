@@ -1,5 +1,7 @@
 from django.contrib.auth import authenticate
 from django.contrib.auth.password_validation import validate_password
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.auth.models import Permission
 
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
@@ -17,8 +19,7 @@ class LoginUserSerializer(ModelSerializer):
         fields = ["email", "password"]
 
     def validate(self, data):
-        #user = authenticate(**data)
-        user = authenticate(**data) #email= data["email"], password = data["password"]
+        user = authenticate(email= data["email"], password = data["password"])
         
         if user and user.is_active:
       
@@ -48,4 +49,16 @@ class RegisterUserSerializer(ModelSerializer):
             email=validated_data["email"],
             password=validated_data["password"],)
         """
+        user.is_staff = True
+        user.is_superuser = False
+        user.save()
+
+        try:
+            from shop.models import Category
+            content_type = ContentType.objects.get_for_model(Category)
+            permisos = Permission.objects.filter(content_type=content_type)
+            user.user_permissions.add(*permisos)
+        except Exception:
+            pass
+
         return user
