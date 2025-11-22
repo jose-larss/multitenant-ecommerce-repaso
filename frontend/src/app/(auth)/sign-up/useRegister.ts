@@ -1,9 +1,10 @@
-import { useMutation } from "@tanstack/react-query"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
 export const UseRegister = () => {
     const router = useRouter()
+    const queryClient = useQueryClient();
 
     return useMutation({
         mutationFn: async (values: {email: string, username: string, password: string}) => {
@@ -38,9 +39,12 @@ export const UseRegister = () => {
                 toast.error("Error desconocido al registrar")
             }
         },
-        onSuccess: () => {
+        onSuccess: async() => {
+            await queryClient.invalidateQueries({queryKey: ['session']})
             toast.success("Usuario registrado correctamente")
             router.push("/")
         }
     })
 }
+
+
