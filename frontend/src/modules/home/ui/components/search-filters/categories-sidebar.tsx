@@ -7,13 +7,15 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sh
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
-import { CustomCategory } from "../types";
+import { CustomCategory } from "../../../../../app/(home)/types";
+import apiService from "@/app/services/apiServices";
 
 interface Props {
     open: boolean;
     onOpenChange: (open: boolean) => void;
 }
 
+/*
 const fetchCategories = async () => {
     try {
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories/`, {
@@ -36,10 +38,11 @@ const fetchCategories = async () => {
         console.error("Error al enviar datos:", error)
     }
 }
+*/
 
 export const CategoriesSidebar = ({open, onOpenChange}: Props) => {
     const router = useRouter();
-    const {data} = useSuspenseQuery({queryKey: ['categories'], queryFn: fetchCategories,})
+    const {data} = useSuspenseQuery({queryKey: ['categories'], queryFn: () => apiService.getNoCacheNoCredentials("/categories/"),})
 
     const [parentCategories, setParentCategories] = useState<CustomCategory[] | null>(null)
     const [selectedCategories, setSelectedCategories] = useState<CustomCategory | null>(null)

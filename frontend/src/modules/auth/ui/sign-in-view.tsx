@@ -5,40 +5,35 @@ import {zodResolver} from "@hookform/resolvers/zod";
 import {Capriola} from "next/font/google";
 
 import { useForm } from "react-hook-form";
-import { registerSchema } from "../schemas";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { loginSchema } from "../schemas";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { UseRegister } from "./useRegister";
+import { UseLogin } from "../hooks/useLogin";
+
 
 const caPriola = Capriola({
   subsets: ["latin"],
   weight: ["400"], // o el peso que necesites
 })
 
-export const SignUpView = () => {
-    const registerMutation = UseRegister()
+export const SignInView = () => {
+    const loginMutation = UseLogin();
 
-    const form = useForm<z.infer<typeof registerSchema>>({
+    const form = useForm<z.infer<typeof loginSchema>>({
         mode: "all",
-        resolver: zodResolver(registerSchema),
+        resolver: zodResolver(loginSchema),
         defaultValues: {
             email: "",
             password: "",
-            username: "",
         }
     });
 
-    const username = form.watch("username")
-    const usernameErrors = form.formState.errors.username
-
-    const showPreview = username && !usernameErrors
-
-    const onSubmit = (values: z.infer<typeof registerSchema>) => {
+    const onSubmit = (values: z.infer<typeof loginSchema>) => {
         console.log(values)
-        registerMutation.mutate(values)
+        loginMutation.mutate(values)
     }   
 
     return(
@@ -62,36 +57,15 @@ export const SignUpView = () => {
                                 size={"sm"}
                                 className="text-base border-none underline"
                             >
-                                <Link prefetch href={"/sign-in"}>
-                                    Sign in
+                                <Link prefetch href={"/sign-up"}>
+                                    Sign up
                                 </Link>
                             </Button>
                         </div>
 
                         <h1 className="text-4xl font-medium">
-                            Únete a más de 1.500 creadores que ganan dinero en funroad
+                            Bienvenido de nuevo, a Funroad!
                         </h1>
-
-                        <FormField 
-                            control={form.control}
-                            name="username"
-                            render={({field}) => (
-                                <FormItem>
-                                    <FormLabel className="text-base">
-                                        Usuario 
-                                    </FormLabel>
-                                    <FormControl>
-                                        <Input {...field}/>
-                                    </FormControl>
-                                    <FormDescription className={cn("hidden", showPreview && "block")}>
-                                        Tu tienda estará disponible en&nbsp;
-                                        {/* TODO: Use proper method to generate preview url */}
-                                        <strong>{username}</strong>.shop.com
-                                    </FormDescription>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
 
                         <FormField 
                             control={form.control}
@@ -131,7 +105,7 @@ export const SignUpView = () => {
                             variant={"elevated"}
                             className="bg-black text-white hover:bg-blue-400 hover:text-primary"
                         >
-                            {registerMutation.isPending ? "Registrando..." :  "Crear cuenta"}
+                            {loginMutation.isPending ? "Logando..." : "Log in"}
                         </Button>
 
                     </form>

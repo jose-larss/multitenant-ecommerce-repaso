@@ -4,20 +4,21 @@ import { cn } from "@/lib/utils"
 import { Poppins } from "next/font/google"
 import Link from "next/link"
 
-import { NavbarItem, navbarItems } from "./navbar-item"
+import { NavbarItem, navbarItems } from "../../../../app/(home)/navbar-item"
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { NavbarSidebar } from "./navbar-sidebar";
 import { useState } from "react";
 import { MenuIcon } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
+import apiService from "@/app/services/apiServices";
 
 const poppins = Poppins({
     subsets: ['latin'],
     weight: ['700'],
 })
 
-
+/*
 const fetchSession = async () => {
     try {
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/me/`, {
@@ -42,12 +43,13 @@ const fetchSession = async () => {
         console.error("Error al enviar datos:", error)
     }
 }
+*/
 
 export const Navbar = () => {
     const pathname = usePathname()
     const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
-    const session = useQuery({queryKey: ['session'], queryFn: fetchSession})
+    const session = useQuery({queryKey: ['session'], queryFn: () => apiService.get("/auth/me/")})
 
     return(
         <nav className="h-20 flex border-b justify-between font-medium bg-white">

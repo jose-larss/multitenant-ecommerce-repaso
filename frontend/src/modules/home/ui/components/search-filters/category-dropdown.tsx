@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useRef, useState } from "react";
-import { useDropDownPosition } from "./use-dropdown-position";
+import { useDropDownPosition } from "../../../hooks/use-dropdown-position";
 import { SubcategoryMenu } from "./subcategory-menu";
-import { CustomCategory } from "../types";
+import { CustomCategory } from "../../../../../app/(home)/types";
 import Link from "next/link";
 
 interface Props {

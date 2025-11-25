@@ -1,10 +1,11 @@
 "use client";
 
 import { redirect } from "next/navigation";
-import { SignInView } from "./sign-in-view";
+import { SignInView } from "@/modules/auth/ui/sign-in-view";
 import { useQuery } from "@tanstack/react-query";
+import apiService from "@/app/services/apiServices";
 
-
+/*
 const fetchSession = async () => {
     try {
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/me/`, {
@@ -29,9 +30,13 @@ const fetchSession = async () => {
         console.error("Error al enviar datos:", error)
     }
 }
+*/
+
+
 
 const Page = () => {
-    const {data, isLoading, error} = useQuery({queryKey: ['session'], queryFn: fetchSession,})
+    const {data, isLoading, error} = useQuery({queryKey: ['session'], queryFn: () => apiService.get("/auth/me/"),})
+
 
     try {
         data.id

@@ -1,17 +1,21 @@
+
+
 import { Input } from "@/components/ui/input";
 import { BookmarkCheckIcon, ListFilterIcon, SearchIcon } from "lucide-react";
-import { CustomCategory } from "../types";
+import { CustomCategory } from "../../../../../app/(home)/types";
 import { CategoriesSidebar } from "./categories-sidebar";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
+import apiService from "@/app/services/apiServices";
 
 
 interface Props {
+    data?: CustomCategory[];
     disabled?: boolean;
 }
-
+/*
 const fetchSession = async () => {
     try {
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/me/`, {
@@ -36,11 +40,12 @@ const fetchSession = async () => {
         console.error("Error al enviar datos:", error)
     }
 }
+*/
 
-export const SearchInput = ({disabled}: Props) => {
+export const SearchInput = ({data,disabled}: Props) => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
-    const session = useQuery({queryKey: ['session'], queryFn: fetchSession})
+    //const session = useQuery({queryKey: ['session'], queryFn: () => apiService.get("/auth/me/"),})
 
     return(
         <div className="flex items-center gap-2 w-full">
@@ -59,7 +64,7 @@ export const SearchInput = ({disabled}: Props) => {
             </Button>
 
             {/* TODO: add librarybutton */}
-            {session.data?.username && (
+            {data && (
                 <Button
                     asChild
                     variant={"elevated"}
