@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CustomCategory } from "../types";
+import { CustomCategory } from "../../../../../app/(home)/types";
 
 interface SubcategoryMenuProps {
     category: CustomCategory;

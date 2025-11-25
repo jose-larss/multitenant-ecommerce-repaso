@@ -3,14 +3,16 @@ import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 
 import { getQueryClient } from "../query-client";
 
-import { Navbar } from "./navbar";
-import { Footer } from "./footer";
-import { SearchFilters, SearchFiltersSkeleton } from "./search-filters";
+import { Navbar } from "../../modules/home/ui/components/navbar";
+import { Footer } from "../../modules/home/ui/components/footer";
+import { SearchFilters, SearchFiltersSkeleton } from "../../modules/home/ui/components/search-filters";
+import apiService from "../services/apiServices";
 
 interface Props {
     children: React.ReactNode
 }
 
+/*
 const fetchCategories = async () => {
     try {
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories/`, {
@@ -34,12 +36,13 @@ const fetchCategories = async () => {
         console.error("Error al enviar datos:", error)
     }
 }
+*/
 
 const Layout = async ({children}: Props) => {
     const queryClient = getQueryClient()
 
     //prefetch de categorías
-    await queryClient.prefetchQuery({queryKey: ["categories"], queryFn: fetchCategories})
+    await queryClient.prefetchQuery({queryKey: ["categories"], queryFn: () => apiService.getNoCacheNoCredentials("/categories/")})
 
     return(
         <div className="flex flex-col min-h-screen">

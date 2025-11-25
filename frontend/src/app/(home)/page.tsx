@@ -7,7 +7,9 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import { Textarea } from "@/components/ui/textarea";
+import apiService from "../services/apiServices";
 
+/*
 const fetchSession = async () => {
     try {
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/me/`, {
@@ -33,10 +35,11 @@ const fetchSession = async () => {
         console.error("Error al enviar datos:", error)
     }
 }
+*/
 
 
 const Home = () => {
-  const {data, isLoading, error} = useQuery({queryKey: ['session'], queryFn: fetchSession,})
+  const {data, isLoading, error} = useQuery({queryKey: ['session'], queryFn: () => apiService.get("/auth/me/"),})
 
   if (isLoading) return <p>Cargando...</p>
   if (error) return <p>Error cargando sesión</p>

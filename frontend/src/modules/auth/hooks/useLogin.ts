@@ -42,7 +42,7 @@ export const UseLogin = () => {
             }
         },
         onSuccess: async () => {
-            //await queryClient.invalidateQueries({queryKey: ['session']})
+            await queryClient.invalidateQueries({queryKey: ['session']})
             toast.success("Usuario logado correctamente")
             router.push("/")
         }

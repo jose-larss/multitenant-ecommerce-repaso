@@ -14,6 +14,48 @@ from .serializers import CustomUserSerializer, RegisterUserSerializer, LoginUser
 
 
 
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.exceptions import InvalidToken
+
+"""
+@api_view(["POST"])
+def cookie_token_refresh(request):
+
+    # Obtener refresh token desde cookie HttpOnly
+    refresh_token = request.COOKIES.get("refresh_token")
+
+    if not refresh_token:
+        return Response({"error": "Refresh token no ha sido provisto"},status=status.HTTP_401_UNAUTHORIZED)
+
+    try:
+        # Validar y crear nuevo access token
+        refresh = RefreshToken(refresh_token)
+        access_token = str(refresh.access_token)
+
+        response = Response({"message": "Access token ha sido refrescado satisfactoriamente"},status=status.HTTP_200_OK)
+
+        # Setear cookie HttpOnly
+        response.set_cookie(
+            key="access_token",
+            value=access_token,
+            httponly=True,
+            secure=True,
+            samesite="None",
+            path="/",
+            max_age=60 * 60 * 24  # 1 día
+        )
+
+        return response
+
+    except InvalidToken:
+        return Response({"error": "Token invalidado"},status=status.HTTP_401_UNAUTHORIZED)
+"""
+
+
+
 class CookieTokenRefreshView(TokenRefreshView):
     def post(self, request, *args, **kwargs):
 
@@ -32,7 +74,9 @@ class CookieTokenRefreshView(TokenRefreshView):
                 value=access_token,
                 httponly=True,
                 secure=True,
-                samesite="None"
+                samesite="None",
+                path="/",
+                max_age = 60 * 60 * 24  # 1 día
             )
             return response
         except InvalidToken:
@@ -99,6 +143,7 @@ def login_view(request):
             secure=True,
             samesite="None",
             path="/",
+            max_age = 60 * 60 * 24  # 1 día
         )
 
         response.set_cookie(
@@ -108,6 +153,7 @@ def login_view(request):
             secure=True,
             samesite="None",
             path="/",
+            max_age = 60 * 60 * 24  # 1 día
         )
    
         return response
