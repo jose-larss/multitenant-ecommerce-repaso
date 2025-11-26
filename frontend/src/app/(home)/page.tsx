@@ -39,10 +39,10 @@ const fetchSession = async () => {
 
 
 const Home = () => {
-  const {data, isLoading, error} = useQuery({queryKey: ['session'], queryFn: () => apiService.get("/auth/me/"),})
+  //const {data, isLoading, error} = useQuery({queryKey: ['products'], queryFn: () => apiService.getNoCacheNoCredentials("/products/"),})
 
-  if (isLoading) return <p>Cargando...</p>
-  if (error) return <p>Error cargando sesión</p>
+  //if (isLoading) return <p>Cargando...</p>
+  //if (error) return <p>Error cargando sesión</p>
 
   return (
     <div className="p-4">
@@ -62,7 +62,7 @@ const Home = () => {
         <div>
           <Checkbox />
         </div>
-        <pre>{JSON.stringify(data, null, 2)}</pre>
+      
       </div>
       
     </div>

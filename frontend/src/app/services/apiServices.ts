@@ -29,8 +29,7 @@ const apiService = {
     },
 
     getNoCacheNoCredentials: async function (url: string): Promise<any> {
-        console.log('GET', url);
-
+   
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${url}`, {
                 method: 'GET',
@@ -56,8 +55,7 @@ const apiService = {
     },
 
     get: async function (url: string): Promise<any> {
-        console.log('GET', url);
-
+     
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${url}`, {
                 method: 'GET',
