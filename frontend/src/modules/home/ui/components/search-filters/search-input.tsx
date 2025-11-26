@@ -12,7 +12,6 @@ import apiService from "@/app/services/apiServices";
 
 
 interface Props {
-    data?: CustomCategory[];
     disabled?: boolean;
 }
 /*
@@ -42,11 +41,11 @@ const fetchSession = async () => {
 }
 */
 
-export const SearchInput = ({data,disabled}: Props) => {
+export const SearchInput = ({disabled}: Props) => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
-    //const session = useQuery({queryKey: ['session'], queryFn: () => apiService.get("/auth/me/"),})
-
+    const session = useQuery({queryKey: ['session'], queryFn: () => apiService.get("/auth/me/"),})
+    
     return(
         <div className="flex items-center gap-2 w-full">
             <CategoriesSidebar open={isSidebarOpen} onOpenChange={setIsSidebarOpen}/>
@@ -64,12 +63,12 @@ export const SearchInput = ({data,disabled}: Props) => {
             </Button>
 
             {/* TODO: add librarybutton */}
-            {data && (
+            {session.data?.username && (
                 <Button
                     asChild
                     variant={"elevated"}
                 >
-                    <Link href={"/library"}>
+                    <Link href={""}>
                         <BookmarkCheckIcon />
                         Librería
                     </Link>

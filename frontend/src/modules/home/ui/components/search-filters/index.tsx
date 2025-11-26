@@ -51,13 +51,13 @@ export const SearchFilters = () => {
     const activeSubcategoryName = activeCategoryData?.subcategorias?.find(
         (subcategory: CustomCategory) => subcategory.slug === activeSubcategory
     )?.name || null
-    console.log(activeSubcategoryName)
+   
     return(
         <div
             style={{backgroundColor: activeCategoryColor}} 
             className="px-4 lg:px-12 py-8 border-b flex flex-col gap-4 w-full"
         >
-            <SearchInput data={data}/>
+            <SearchInput />
             <div className="hidden lg:block">
                 <Categories data={data}/>
             </div>

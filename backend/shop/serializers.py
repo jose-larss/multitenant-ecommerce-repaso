@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from shop.models import Category, SubCategory
+from shop.models import Category, SubCategory, Product
 
 
 
@@ -16,3 +16,19 @@ class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = ['id', 'name', 'slug', 'color', 'created_at', 'updated_at', 'subcategorias']
+
+
+class CategoryProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ['id', 'name', 'slug', 'color', 'created_at', 'updated_at']
+
+
+class ProductSerializer(serializers.ModelSerializer):
+    category = CategoryProductSerializer(read_only=True)
+    subcategory = SubCategorySerializer(read_only=True)
+
+    class Meta:
+        model = Product
+        fields = ["id", "name", "slug", 
+                  "description", "price", "refundpolicy", 'created_at', 'updated_at', "category", "subcategory"] # a falta de imagen
