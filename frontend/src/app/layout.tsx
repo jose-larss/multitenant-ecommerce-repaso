@@ -3,6 +3,7 @@ import {Capriola} from "next/font/google";
 import "./globals.css";
 
 import { ReactQueryProvider } from "./react-query-provider";
+import {NuqsAdapter} from 'nuqs/adapters/next/app';
 import { Toaster } from "@/components/ui/sonner";
 
 const caPriola = Capriola({
@@ -25,11 +26,12 @@ export default function RootLayout({
       <body
         className={`${caPriola.className} antialiased`}
       >
-        <ReactQueryProvider>
-          {children}
-          <Toaster />
-        </ReactQueryProvider>
-        
+        <NuqsAdapter>
+          <ReactQueryProvider>
+            {children}
+            <Toaster />
+          </ReactQueryProvider>
+        </NuqsAdapter>
       </body>
     </html>
   );

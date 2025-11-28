@@ -1,0 +1,602 @@
+[
+  {
+    "category": "business-money",
+    "subcategory": "accounting",
+    "name": "Guía Completa de Contabilidad para Freelancers",
+    "slug": "guia-contabilidad-freelancers",
+    "description": "Aprende a gestionar tus ingresos, gastos e impuestos como freelancer.",
+    "price": 29.90,
+    "imagen": "",
+    "refundpolicy": "14-días"
+  },
+  {
+    "category": "business-money",
+    "subcategory": "entrepreneurship",
+    "name": "Pack Emprende Desde Cero",
+    "slug": "pack-emprende-desde-cero",
+    "description": "Todo lo que necesitas para lanzar tu primer negocio.",
+    "price": 49.00,
+    "imagen": "",
+    "refundpolicy": "30-días"
+  },
+  {
+    "category": "business-money",
+    "subcategory": "gigs-side-projects",
+    "name": "Guía de Proyectos Secundarios Rentables 2025",
+    "slug": "proyectos-secundarios-rentables-2025",
+    "description": "Más de 40 formas de generar ingresos extra.",
+    "price": 21.50,
+    "imagen": "",
+    "refundpolicy": "14-días"
+  },
+  {
+    "category": "business-money",
+    "subcategory": "investing",
+    "name": "Curso Inversiones Inteligentes 2025",
+    "slug": "curso-inversiones-inteligentes-2025",
+    "description": "Aprende a invertir en bolsa y criptomonedas de forma segura.",
+    "price": 89.99,
+    "imagen": "",
+    "refundpolicy": "7-días"
+  },
+  {
+    "category": "business-money",
+    "subcategory": "management-leadership",
+    "name": "Liderazgo Moderno: Manual del Nuevo Manager",
+    "slug": "liderazgo-moderno-manager",
+    "description": "Mejora tus habilidades de liderazgo y gestión de equipos.",
+    "price": 34.00,
+    "imagen": "",
+    "refundpolicy": "30-días"
+  },
+  {
+    "category": "business-money",
+    "subcategory": "marketing-sales",
+    "name": "Pack Estrategias de Marketing 2025",
+    "slug": "pack-marketing-2025",
+    "description": "Incluye tácticas de redes sociales, anuncios y funnel marketing.",
+    "price": 57.00,
+    "imagen": "",
+    "refundpolicy": "14-días"
+  },
+  {
+    "category": "business-money",
+    "subcategory": "networking-careers-jobs",
+    "name": "Guía de Networking para Profesionales",
+    "slug": "guia-networking-profesionales",
+    "description": "Aprende a crear relaciones profesionales de alto valor.",
+    "price": 19.99,
+    "imagen": "",
+    "refundpolicy": "7-días"
+  },
+  {
+    "category": "business-money",
+    "subcategory": "personal-finance",
+    "name": "Método para Controlar tus Finanzas Personales",
+    "slug": "metodo-controlar-finanzas",
+    "description": "Crea un presupuesto sólido y empieza a ahorrar.",
+    "price": 14.99,
+    "imagen": "",
+    "refundpolicy": "30-días"
+  },
+  {
+    "category": "business-money",
+    "subcategory": "real-estate",
+    "name": "Introducción a la Inversión Inmobiliaria",
+    "slug": "introduccion-inversion-inmobiliaria",
+    "description": "Aprende a analizar propiedades y generar ingresos pasivos.",
+    "price": 79.00,
+    "imagen": "",
+    "refundpolicy": "14-días"
+  },
+
+  {
+    "category": "software-development",
+    "subcategory": "web-development",
+    "name": "Masterclass de React + Django",
+    "slug": "masterclass-react-django",
+    "description": "Crea aplicaciones web modernas con React y Django REST.",
+    "price": 119.00,
+    "imagen": "",
+    "refundpolicy": "30-días"
+  },
+  {
+    "category": "software-development",
+    "subcategory": "web-development",
+    "name": "Curso Profesional de Next.js 15",
+    "slug": "curso-nextjs-15",
+    "description": "Un recorrido completo por el framework moderno de React.",
+    "price": 97.00,
+    "imagen": "",
+    "refundpolicy": "14-días"
+  },
+  {
+    "category": "software-development",
+    "subcategory": "mobile-development",
+    "name": "Aprende React Native desde Cero",
+    "slug": "aprende-react-native-desde-cero",
+    "description": "Construye apps móviles para iOS y Android.",
+    "price": 69.99,
+    "imagen": "",
+    "refundpolicy": "7-días"
+  },
+  {
+    "category": "software-development",
+    "subcategory": "mobile-development",
+    "name": "Flutter Pro 2025",
+    "slug": "flutter-pro-2025",
+    "description": "Desarrollo móvil multiplataforma con Flutter.",
+    "price": 74.00,
+    "imagen": "",
+    "refundpolicy": "14-días"
+  },
+  {
+    "category": "software-development",
+    "subcategory": "game-development",
+    "name": "Crea tu Primer Videojuego con Unity",
+    "slug": "primer-videojuego-unity",
+    "description": "Aprende a crear juegos en 2D y 3D paso a paso.",
+    "price": 89.00,
+    "imagen": "",
+    "refundpolicy": "30-días"
+  },
+  {
+    "category": "software-development",
+    "subcategory": "game-development",
+    "name": "GameDev 2D con Godot",
+    "slug": "gamedev-godot-2d",
+    "description": "Introducción al desarrollo de videojuegos con Godot Engine.",
+    "price": 32.00,
+    "imagen": "",
+    "refundpolicy": "14-días"
+  },
+  {
+    "category": "software-development",
+    "subcategory": "programming-languages",
+    "name": "Python Profesional 3.12",
+    "slug": "python-profesional-312",
+    "description": "Aprende Python moderno con proyectos reales.",
+    "price": 59.00,
+    "imagen": "",
+    "refundpolicy": "30-días"
+  },
+  {
+    "category": "software-development",
+    "subcategory": "programming-languages",
+    "name": "Rust para Principiantes",
+    "slug": "rust-para-principiantes",
+    "description": "Descubre Rust y programación segura en memoria.",
+    "price": 48.00,
+    "imagen": "",
+    "refundpolicy": "14-días"
+  },
+  {
+    "category": "software-development",
+    "subcategory": "devops",
+    "name": "Curso Práctico de Docker y CI/CD",
+    "slug": "curso-docker-ci-cd",
+    "description": "Automatiza tus despliegues usando Docker y GitHub Actions.",
+    "price": 74.50,
+    "imagen": "",
+    "refundpolicy": "14-días"
+  },
+  {
+    "category": "software-development",
+    "subcategory": "devops",
+    "name": "Kubernetes para Desarrolladores",
+    "slug": "kubernetes-para-desarrolladores",
+    "description": "Orquestación de contenedores sin complicaciones.",
+    "price": 99.00,
+    "imagen": "",
+    "refundpolicy": "7-días"
+  },
+
+  {
+    "category": "writing-publishing",
+    "subcategory": "fiction",
+    "name": "Plantillas para Escribir tu Primera Novela",
+    "slug": "plantillas-primera-novela",
+    "description": "Incluye estructuras narrativas y arcos de personajes.",
+    "price": 17.99,
+    "imagen": "",
+    "refundpolicy": "1-días"
+  },
+  {
+    "category": "writing-publishing",
+    "subcategory": "fiction",
+    "name": "Guía de Escritura de Ciencia Ficción",
+    "slug": "guia-escritura-ciencia-ficcion",
+    "description": "Construye mundos futuristas de forma coherente.",
+    "price": 14.50,
+    "imagen": "",
+    "refundpolicy": "7-días"
+  },
+  {
+    "category": "writing-publishing",
+    "subcategory": "non-fiction",
+    "name": "Cómo Escribir No Ficción Atractiva",
+    "slug": "escribir-no-ficcion-atractiva",
+    "description": "Narrativa clara y convincente para libros informativos.",
+    "price": 16.99,
+    "imagen": "",
+    "refundpolicy": "14-días"
+  },
+  {
+    "category": "writing-publishing",
+    "subcategory": "blogging",
+    "name": "Blogging Profesional 2025",
+    "slug": "blogging-profesional-2025",
+    "description": "Crea y monetiza tu blog desde cero.",
+    "price": 23.99,
+    "imagen": "",
+    "refundpolicy": "30-días"
+  },
+  {
+    "category": "writing-publishing",
+    "subcategory": "copywriting",
+    "name": "Copywriting Persuasivo",
+    "slug": "copywriting-persuasivo",
+    "description": "Aprende a escribir textos que venden.",
+    "price": 27.50,
+    "imagen": "",
+    "refundpolicy": "14-días"
+  },
+  {
+    "category": "writing-publishing",
+    "subcategory": "self-publishing",
+    "name": "Autoedición para Autores Independientes",
+    "slug": "autoedicion-autores-independientes",
+    "description": "Publica tu libro de forma profesional.",
+    "price": 19.99,
+    "imagen": "",
+    "refundpolicy": "30-días"
+  },
+
+  {
+    "category": "other",
+    "subcategory": null,
+    "name": "Plantilla Profesional de Curriculum Vitae",
+    "slug": "plantilla-cv-profesional",
+    "description": "Diseño moderno editable.",
+    "price": 5.99,
+    "imagen": "",
+    "refundpolicy": "1-días"
+  },
+  {
+    "category": "other",
+    "subcategory": null,
+    "name": "Backgrounds Minimalistas HD",
+    "slug": "backgrounds-minimalistas-hd",
+    "description": "Colección de fondos elegantes para uso personal.",
+    "price": 4.99,
+    "imagen": "",
+    "refundpolicy": "no-reembolso"
+  },
+
+  {
+    "category": "education",
+    "subcategory": "online-courses",
+    "name": "Curso de Inglés Acelerado",
+    "slug": "curso-ingles-acelerado",
+    "description": "Método intensivo para aprender inglés.",
+    "price": 59.00,
+    "imagen": "",
+    "refundpolicy": "30-días"
+  },
+  {
+    "category": "education",
+    "subcategory": "online-courses",
+    "name": "Matemáticas Desde Cero",
+    "slug": "matematicas-desde-cero",
+    "description": "Curso práctico de aritmética, álgebra y lógica.",
+    "price": 38.00,
+    "imagen": "",
+    "refundpolicy": "14-días"
+  },
+  {
+    "category": "education",
+    "subcategory": "tutoring",
+    "name": "Tutorías de Programación Personalizadas",
+    "slug": "tutorias-programacion-personalizadas",
+    "description": "Aprende programación con sesiones 1 a 1.",
+    "price": 25.00,
+    "imagen": "",
+    "refundpolicy": "7-días"
+  },
+  {
+    "category": "education",
+    "subcategory": "test-preparation",
+    "name": "Guía para Aprobar el Examen TOEFL",
+    "slug": "guia-aprobar-toefl",
+    "description": "Estrategias y práctica enfocada.",
+    "price": 27.00,
+    "imagen": "",
+    "refundpolicy": "14-días"
+  },
+  {
+    "category": "education",
+    "subcategory": "language-learning",
+    "name": "Aprende Japonés Desde Cero",
+    "slug": "aprende-japones-desde-cero",
+    "description": "Curso básico de hiragana, katakana y vocabulario.",
+    "price": 44.99,
+    "imagen": "",
+    "refundpolicy": "30-días"
+  },
+
+  {
+    "category": "self-improvement",
+    "subcategory": "productivity",
+    "name": "Sistema de Productividad 4x",
+    "slug": "sistema-productividad-4x",
+    "description": "Mejora tu enfoque y organización.",
+    "price": 22.00,
+    "imagen": "",
+    "refundpolicy": "no-reembolso"
+  },
+  {
+    "category": "self-improvement",
+    "subcategory": "productivity",
+    "name": "Método Bullet Journal Pro",
+    "slug": "metodo-bullet-journal-pro",
+    "description": "Organiza tu vida con un sistema simple y potente.",
+    "price": 12.99,
+    "imagen": "",
+    "refundpolicy": "30-días"
+  },
+  {
+    "category": "self-improvement",
+    "subcategory": "personal-development",
+    "name": "Desarrollo Personal en 30 Días",
+    "slug": "desarrollo-personal-30-dias",
+    "description": "Un plan práctico para mejorar tu vida diaria.",
+    "price": 18.50,
+    "imagen": "",
+    "refundpolicy": "14-días"
+  },
+  {
+    "category": "self-improvement",
+    "subcategory": "mindfulness",
+    "name": "Meditación para Principiantes",
+    "slug": "meditacion-para-principiantes",
+    "description": "Aprende a reducir estrés y mejorar tu enfoque.",
+    "price": 14.00,
+    "imagen": "",
+    "refundpolicy": "1-días"
+  },
+  {
+    "category": "self-improvement",
+    "subcategory": "career-growth",
+    "name": "Crecimiento Profesional Acelerado",
+    "slug": "crecimiento-profesional-acelerado",
+    "description": "Estrategias para avanzar en tu carrera.",
+    "price": 37.00,
+    "imagen": "",
+    "refundpolicy": "14-días"
+  },
+
+  {
+    "category": "fitness-health",
+    "subcategory": "workout-plans",
+    "name": "Plan de Entrenamiento en Casa 12 Semanas",
+    "slug": "plan-entrenamiento-casa-12-semanas",
+    "description": "Rutinas sin equipo para mejorar tu físico.",
+    "price": 14.99,
+    "imagen": "",
+    "refundpolicy": "7-días"
+  },
+  {
+    "category": "fitness-health",
+    "subcategory": "nutrition",
+    "name": "Plan Nutricional para Bajar de Peso",
+    "slug": "plan-nutricional-bajar-peso",
+    "description": "Menús equilibrados y fáciles de seguir.",
+    "price": 19.50,
+    "imagen": "",
+    "refundpolicy": "14-días"
+  },
+  {
+    "category": "fitness-health",
+    "subcategory": "mental-health",
+    "name": "Guía para Reducir la Ansiedad",
+    "slug": "guia-reducir-ansiedad",
+    "description": "Técnicas efectivas y basadas en evidencia.",
+    "price": 11.00,
+    "imagen": "",
+    "refundpolicy": "30-días"
+  },
+  {
+    "category": "fitness-health",
+    "subcategory": "yoga",
+    "name": "Yoga Diario para Todos",
+    "slug": "yoga-diario-para-todos",
+    "description": "Rutinas de yoga para fortalecer y relajar tu cuerpo.",
+    "price": 17.00,
+    "imagen": "",
+    "refundpolicy": "14-días"
+  },
+
+  {
+    "category": "design",
+    "subcategory": "ui-ux",
+    "name": "Kit UI/UX para Diseñadores Modernos",
+    "slug": "kit-uiux-disenadores-modernos",
+    "description": "Plantillas, guías y recursos profesionales.",
+    "price": 32.50,
+    "imagen": "",
+    "refundpolicy": "14-días"
+  },
+  {
+    "category": "design",
+    "subcategory": "graphic-design",
+    "name": "Curso de Diseño Gráfico desde Cero",
+    "slug": "diseno-grafico-desde-cero",
+    "description": "Aprende composición, color y diseño moderno.",
+    "price": 48.00,
+    "imagen": "",
+    "refundpolicy": "30-días"
+  },
+  {
+    "category": "design",
+    "subcategory": "3d-modeling",
+    "name": "Modelado 3D con Blender",
+    "slug": "modelado-3d-blender",
+    "description": "Crea modelos 3D profesionales paso a paso.",
+    "price": 52.00,
+    "imagen": "",
+    "refundpolicy": "14-días"
+  },
+  {
+    "category": "design",
+    "subcategory": "typography",
+    "name": "Tipografía para Diseñadores",
+    "slug": "tipografia-para-disenadores",
+    "description": "Principios esenciales de tipografía moderna.",
+    "price": 13.99,
+    "imagen": "",
+    "refundpolicy": "7-días"
+  },
+
+  {
+    "category": "drawing-painting",
+    "subcategory": "watercolor",
+    "name": "Curso de Acuarela para Principiantes",
+    "slug": "curso-acuarela-principiantes",
+    "description": "Aprende técnicas esenciales de acuarela.",
+    "price": 19.99,
+    "imagen": "",
+    "refundpolicy": "30-días"
+  },
+  {
+    "category": "drawing-painting",
+    "subcategory": "acrylic",
+    "name": "Pintura Acrílica Paso a Paso",
+    "slug": "pintura-acrilica-paso-a-paso",
+    "description": "Curso completo de pintura acrílica.",
+    "price": 24.99,
+    "imagen": "",
+    "refundpolicy": "14-días"
+  },
+  {
+    "category": "drawing-painting",
+    "subcategory": "oil",
+    "name": "Técnicas de Pintura al Óleo",
+    "slug": "tecnicas-pintura-oleo",
+    "description": "Aprende a dominar el óleo desde lo básico.",
+    "price": 29.99,
+    "imagen": "",
+    "refundpolicy": "7-días"
+  },
+  {
+    "category": "drawing-painting",
+    "subcategory": "pastel",
+    "name": "Pintura con Pasteles Suaves",
+    "slug": "pintura-pasteles-suaves",
+    "description": "Domina el color y la textura del pastel.",
+    "price": 18.00,
+    "imagen": "",
+    "refundpolicy": "14-días"
+  },
+  {
+    "category": "drawing-painting",
+    "subcategory": "charcoal",
+    "name": "Dibujo con Carboncillo para Todos",
+    "slug": "dibujo-carboncillo-para-todos",
+    "description": "Sombras, luces y proporciones.",
+    "price": 15.00,
+    "imagen": "",
+    "refundpolicy": "30-días"
+  },
+
+  {
+    "category": "music",
+    "subcategory": "songwriting",
+    "name": "Composición de Canciones para Principiantes",
+    "slug": "composicion-canciones-principiantes",
+    "description": "Aprende estructura, melodía y armonía básica.",
+    "price": 21.99,
+    "imagen": "",
+    "refundpolicy": "14-días"
+  },
+  {
+    "category": "music",
+    "subcategory": "music-production",
+    "name": "Pack de Samples Pro 2025",
+    "slug": "pack-samples-pro-2025",
+    "description": "Más de 300 samples exclusivos.",
+    "price": 27.00,
+    "imagen": "",
+    "refundpolicy": "no-reembolso"
+  },
+  {
+    "category": "music",
+    "subcategory": "music-theory",
+    "name": "Teoría Musical para Autodidactas",
+    "slug": "teoria-musical-autodidactas",
+    "description": "Base sólida para cualquier instrumentista.",
+    "price": 26.00,
+    "imagen": "",
+    "refundpolicy": "14-días"
+  },
+  {
+    "category": "music",
+    "subcategory": "music-history",
+    "name": "Historia de la Música Moderna",
+    "slug": "historia-musica-moderna",
+    "description": "Un recorrido por géneros, épocas y estilos.",
+    "price": 18.50,
+    "imagen": "",
+    "refundpolicy": "7-días"
+  },
+
+  {
+    "category": "photography",
+    "subcategory": "portrait",
+    "name": "Guía de Fotografía de Retrato",
+    "slug": "guia-fotografia-retrato",
+    "description": "Aprende a capturar retratos profesionales.",
+    "price": 24.99,
+    "imagen": "",
+    "refundpolicy": "14-días"
+  },
+  {
+    "category": "photography",
+    "subcategory": "landscape",
+    "name": "Fotografía de Paisajes Nivel Pro",
+    "slug": "fotografia-paisajes-pro",
+    "description": "Domina composición, luz y edición.",
+    "price": 32.00,
+    "imagen": "",
+    "refundpolicy": "30-días"
+  },
+  {
+    "category": "photography",
+    "subcategory": "street-photography",
+    "name": "Fotografía Callejera Creativa",
+    "slug": "fotografia-callejera-creativa",
+    "description": "La belleza oculta en la vida urbana.",
+    "price": 19.99,
+    "imagen": "",
+    "refundpolicy": "14-días"
+  },
+  {
+    "category": "photography",
+    "subcategory": "nature",
+    "name": "Fotografía de Naturaleza Salvaje",
+    "slug": "fotografia-naturaleza-salvaje",
+    "description": "Captura fauna y flora como un profesional.",
+    "price": 27.00,
+    "imagen": "",
+    "refundpolicy": "7-días"
+  },
+  {
+    "category": "photography",
+    "subcategory": "macro",
+    "name": "Fotografía Macro en Casa",
+    "slug": "fotografia-macro-en-casa",
+    "description": "Explora el mundo a escala microscópica.",
+    "price": 15.00,
+    "imagen": "",
+    "refundpolicy": "30-días"
+  }
+]

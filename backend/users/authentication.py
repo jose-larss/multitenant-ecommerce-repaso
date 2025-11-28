@@ -5,7 +5,7 @@ from rest_framework_simplejwt.exceptions import AuthenticationFailed
 class CookieJWTAuthentication(JWTAuthentication):
     def authenticate(self, request):
         raw_token = request.COOKIES.get("access_token")
-        print("Token en cookie:", raw_token)
+       
         if not raw_token:
             return None
         
@@ -17,7 +17,6 @@ class CookieJWTAuthentication(JWTAuthentication):
         try:
             user = self.get_user(validated_token)
 
-            print("Usuario autenticado:", user)
             # 🔹 Retorna exactamente la tupla que DRF espera
             return user, validated_token
         except AuthenticationFailed as e:
