@@ -68,7 +68,7 @@ export const SearchInput = ({disabled}: Props) => {
                     asChild
                     variant={"elevated"}
                 >
-                    <Link href={""}>
+                    <Link href={"/"}>
                         <BookmarkCheckIcon />
                         Librería
                     </Link>

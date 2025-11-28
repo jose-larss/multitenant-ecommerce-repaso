@@ -155,7 +155,7 @@ def login_view(request):
             path="/",
             max_age = 60 * 60 * 24  # 1 día
         )
-   
+    
         return response
 
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

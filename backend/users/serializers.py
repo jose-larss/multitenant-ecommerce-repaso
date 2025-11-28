@@ -20,7 +20,7 @@ class LoginUserSerializer(ModelSerializer):
 
     def validate(self, data):
         user = authenticate(email= data["email"], password = data["password"])
-        
+       
         if user and user.is_active:
       
             return user

@@ -7,3 +7,16 @@ export interface CustomCategory {
     updated_at: string;
     subcategorias: CustomCategory[]; // relaccion recursiva (subcategorias)
 }
+
+export interface CustomProduct {
+    id: string;
+    name: string;
+    slug: string; 
+    description: string; 
+    price: number; 
+    refundpolicy: string; 
+    created_at: string; 
+    updated_at: string;
+    category: CustomCategory;
+    subcategory: CustomCategory;
+}
