@@ -20,3 +20,10 @@ export interface CustomProduct {
     category: CustomCategory;
     subcategory: CustomCategory;
 }
+
+export interface CustomTags {
+    id: string;
+    name: string;   
+    created_at: string; 
+    updated_at: string;
+}

@@ -151,7 +151,9 @@ REST_FRAMEWORK = {
         # por defecto esto espera tokens que se envian en el header
         # esto va a usar cookies
         'users.authentication.CookieJWTAuthentication',
-    )
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.CursorPagination',
+    'PAGE_SIZE': 3
 }
 
 SIMPLE_JWT = {

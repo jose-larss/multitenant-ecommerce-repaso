@@ -28,8 +28,34 @@ const apiService = {
         }
     },
 
+    getInfiniteQueries: async function (url: string): Promise<any> {
+       
+        try {
+            const response = await fetch(`${url}`, {
+                method: 'GET',
+                cache: "no-store", // evita que nextJs use su propio cache
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+            if (!response.ok) {
+                //Manejo de errores si el backend devuelve un estado no existoso
+                const errorData = await response.json();
+                //console.error("Error en el backend", errorData)
+                return errorData
+            }
+            //si la respuesta es exitosa
+            const data = await response.json()
+            return data;
+
+        } catch (error) {
+            //Manejo de errores de red o conexion
+            console.error("Error al enviar datos:", error)
+        }
+    },
+
     getNoCacheNoCredentials: async function (url: string): Promise<any> {
-   
+       
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${url}`, {
                 method: 'GET',
