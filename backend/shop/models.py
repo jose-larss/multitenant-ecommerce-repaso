@@ -42,6 +42,20 @@ class SubCategory(models.Model):
         return self.name
 
 
+class Tag(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "Etiqueta"
+        verbose_name_plural = "Etiquetas"
+
+    def __str__(self):
+        return self.name
+
+
 REFUND = (
     ("30-días", "30-días"),
     ("14-días", "14-días"),
@@ -65,6 +79,7 @@ class Product(models.Model):
         blank=True,   # ⚠️ Para que no falle si la categoría no tiene subcategorías
         help_text="Clicke primero la categoria, para que despliegue las subcategorias"
     )
+    tags = models.ManyToManyField(Tag)
     name = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
     description = models.TextField(blank=True, null=True)
@@ -76,6 +91,10 @@ class Product(models.Model):
 
     class Meta:
         ordering = ["name"]
+        verbose_name = "Producto"
+        verbose_name_plural = "Productos"
 
     def __str__(self):
         return self.name
+
+

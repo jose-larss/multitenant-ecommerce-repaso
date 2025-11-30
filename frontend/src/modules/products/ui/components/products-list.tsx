@@ -4,15 +4,21 @@ import { CustomProduct } from "@/app/(home)/types";
 import apiService from "@/app/services/apiServices"
 import { useSuspenseQuery } from "@tanstack/react-query"
 
+import { useProductsFilters } from "../../hooks/useProductsFilterClient";
+
 interface ProductListProps {
     category: string;
     subcategory?: string;
 }
 
 export const ProductsList = ({category, subcategory}: ProductListProps) => {
-    const {data} = useSuspenseQuery({queryKey: ['products'], 
-                queryFn: () => apiService.getNoCacheNoCredentials(`/products/${category}/${subcategory}/`)})
-
+    const [filters] = useProductsFilters();
+    const {data} = useSuspenseQuery({
+        queryKey: ['products', category, filters.minPrice, filters.maxPrice, filters.tags, filters.sort], 
+        queryFn: () => apiService.getNoCacheNoCredentials(
+            `/products/${category}?minPrice=${filters.minPrice}&maxPrice=${filters.maxPrice}&tags=${[filters.tags]}&sort=${filters.sort}`
+    )})
+  
     return(
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
             {data?.map((product: CustomProduct) => (
