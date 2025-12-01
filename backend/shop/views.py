@@ -8,19 +8,20 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.pagination import CursorPagination
+from shop.pagination import DefaultCursorPagination
 
 
-
+"""
 class TagCursorPagination(CursorPagination):
     page_size = 3
     ordering = "created_at"
-
+"""
 
 
 @api_view(['GET'])
 def list_tags(request):
     tags = Tag.objects.all().order_by("created_at")
-    paginator = TagCursorPagination()
+    paginator = DefaultCursorPagination()
     page = paginator.paginate_queryset(tags, request)
 
     serializer = TagSerializer(page, many=True)
@@ -38,16 +39,19 @@ def list_products(request, categorySlug, subCategorySlug=""):
             return Decimal(str(value))
         except (InvalidOperation, ValueError, TypeError):
             return None
-        
+
     # la variable de javascript va con undefined esto devuelve true
     category = get_object_or_404(Category, slug=categorySlug)
     products = Product.objects.filter(category=category)
+
+    if subCategorySlug:
+        subCategory = get_object_or_404(SubCategory, slug=subCategorySlug)
+        products = Product.objects.filter(category=category, subcategory=subCategory)
 
     min_price = parse_decimal(request.GET.get("minPrice"))
     max_price = parse_decimal(request.GET.get("maxPrice"))
     tags = request.GET.getlist("tags") # se recibe asi ["foo", bar, test"]
     sort = request.GET.get("sort")
-    print("Sort es", sort)
 
     if sort == "tendencia":
         products = products.order_by("created_at")
@@ -57,7 +61,7 @@ def list_products(request, categorySlug, subCategorySlug=""):
 
     if len(tags) > 0:
         tags = tags[0].split(",") # se convierte ["foo", "bar", "test"]
-        print(tags)
+      
     if min_price is not None:
         products = products.filter(price__gte=Decimal(min_price))
 
@@ -66,11 +70,14 @@ def list_products(request, categorySlug, subCategorySlug=""):
     
     if len(tags) >= 1 and tags[0] != "":
         products = products.filter(tags__name__in=tags)
-    print(products)
+  
     products = products.distinct() # muy importante a la hora de concatenar tags
-    print(products)
-    serializer = ProductSerializer(products, many=True)
-    return Response(serializer.data, status=status.HTTP_200_OK)
+
+    paginator = DefaultCursorPagination()
+    page = paginator.paginate_queryset(products, request)
+
+    serializer = ProductSerializer(page, many=True)
+    return paginator.get_paginated_response(serializer.data)
 
 
 @api_view(['GET'])
