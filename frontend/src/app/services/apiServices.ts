@@ -1,5 +1,4 @@
 
-
 const apiService = {
 
     getRefreshToken: async function (): Promise<any> {
@@ -29,7 +28,7 @@ const apiService = {
     },
 
     getInfiniteQueries: async function (url: string): Promise<any> {
-       
+        //console.log("URL========>", url)
         try {
             const response = await fetch(`${url}`, {
                 method: 'GET',

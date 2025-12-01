@@ -152,8 +152,8 @@ REST_FRAMEWORK = {
         # esto va a usar cookies
         'users.authentication.CookieJWTAuthentication',
     ),
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.CursorPagination',
-    'PAGE_SIZE': 3
+    'DEFAULT_PAGINATION_CLASS': 'shop.pagination.DefaultCursorPagination',
+    #'PAGE_SIZE': 3
 }
 
 SIMPLE_JWT = {

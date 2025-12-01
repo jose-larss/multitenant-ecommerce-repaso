@@ -14,6 +14,7 @@ export interface CustomProduct {
     slug: string; 
     description: string; 
     price: number; 
+    imagenUrl: string,
     refundpolicy: string; 
     created_at: string; 
     updated_at: string;
