@@ -18,7 +18,7 @@ export const ProductCard = ({id, name, imageUrl, authorUsername, authorImageUrl,
         <Link href={`/product/${id}`}>
             <div className="border rounded-md bg-white overflow-hidden h-full flex flex-col">
                 <div className="relative aspect-square">
-                    <Image alt={name} fill src={imageUrl || "/placeholder.png"} className="object-cover"/>
+                    <Image loading="eager" alt={name} sizes="40" fill src={imageUrl || "/placeholder.png"} className="object-cover"/>
                 </div>
 
                 <div className="p-4 border-y flex flex-col gap-3 flex-1">

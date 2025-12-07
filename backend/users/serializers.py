@@ -7,6 +7,7 @@ from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 
 from users.models import CustomUser
+from shop.models import Tenant
 
 
 
@@ -41,24 +42,35 @@ class RegisterUserSerializer(ModelSerializer):
         fields = ["email", "username", "password"]
 
     def create(self, validated_data):
-        user = CustomUser.objects.create_user(**validated_data)
-        """
-        Es lo mismo que lo de arriba
+        # 1 crea tenant
+        tenant = Tenant.objects.create(
+            name = validated_data["username"],
+            slug = validated_data["username"],
+            stripeAccountId="test",
+        )
+
+        # 2 crea usuario
+        #user = CustomUser.objects.create_user(**validated_data)
+        #Es lo mismo que lo de arriba
         user = CustomUser.objects.create_user(
             username=validated_data["username"],
             email=validated_data["email"],
             password=validated_data["password"],)
-        """
+        
+        # 3 relacionar usuaurio y tenant
+        user.tenant = tenant
+
+        # ajustamos los roles / flags
         user.is_staff = True
         user.is_superuser = False
         user.save()
 
         try:
-            from shop.models import Category
-            content_type = ContentType.objects.get_for_model(Category)
+            from shop.models import Product
+            content_type = ContentType.objects.get_for_model(Product)
             permisos = Permission.objects.filter(content_type=content_type)
             user.user_permissions.add(*permisos)
         except Exception:
             pass
-
+        
         return user

@@ -12,22 +12,34 @@ import { InboxIcon } from "lucide-react";
 
 interface ProductListProps {
     category?: string;
+    subcategory?: string;
 }
 
-export const ProductsListCategory = ({category}: ProductListProps) => {
+export const ProductsList = ({category, subcategory}: ProductListProps) => {
     const [filters] = useProductsFilters();
-    const {data, isLoading, hasNextPage, isFetchingNextPage, fetchNextPage} = useSuspenseInfiniteQuery({
-        queryKey: ['products', category, filters.minPrice, filters.maxPrice, filters.tags, filters.sort], 
-        queryFn: ({pageParam}) => {
-            return apiService.getInfiniteQueries(pageParam)
-        },
-        initialPageParam: `${process.env.NEXT_PUBLIC_API_URL}/products/${category}?minPrice=${filters.minPrice}&maxPrice=${filters.maxPrice}&tags=${[filters.tags]}&sort=${filters.sort}&limit=${DEFAULT_LIMIT_PAGINATION}`,
-        getNextPageParam: (lastPage) => {
-            return lastPage.next || undefined
-        }
-        
-    })
 
+    let params = `${process.env.NEXT_PUBLIC_API_URL}/products?minPrice=${filters.minPrice}&maxPrice=${filters.maxPrice}&tags=${[filters.tags]}&sort=${filters.sort}`
+    let queryKeys: any = ['products', filters.minPrice, filters.maxPrice, filters.tags, filters.sort]
+
+    if (subcategory !== undefined && category !== undefined) {
+        params = `${process.env.NEXT_PUBLIC_API_URL}/products/${category}/${subcategory}?minPrice=${filters.minPrice}&maxPrice=${filters.maxPrice}&tags=${[filters.tags]}&sort=${filters.sort}`
+        queryKeys = ['products', category, subcategory, filters.minPrice, filters.maxPrice, filters.tags, filters.sort]
+    } else {
+        if (category !== undefined){
+            params = `${process.env.NEXT_PUBLIC_API_URL}/products/${category}?minPrice=${filters.minPrice}&maxPrice=${filters.maxPrice}&tags=${[filters.tags]}&sort=${filters.sort}`
+            queryKeys = ['products', category, filters.minPrice, filters.maxPrice, filters.tags, filters.sort]
+        }
+    }
+    
+    const {data,isLoading,hasNextPage,isFetchingNextPage,fetchNextPage,} = useSuspenseInfiniteQuery({
+        queryKey: queryKeys ,
+        queryFn: ({ pageParam }) => apiService.getInfiniteQueries(pageParam),
+        initialPageParam: params,
+        getNextPageParam: (lastPage) => lastPage.next || undefined,
+        //enabled: !!category,  // siempre al menos categoría
+    });
+  
+    
     if (data?.pages?.[0].results.length === 0) {
         return(
             <div className="border border-black border-dashed flex items-center justify-center p-8 flex-col gap-y-4 bg-white w-full rounded-lg">
@@ -73,7 +85,7 @@ export const ProductsListCategory = ({category}: ProductListProps) => {
     )
 }
 
-export const ProductListCategorySkeleton = () => {
+export const ProductListSkeleton = () => {
     return(
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
             {Array.from({length: DEFAULT_LIMIT_PAGINATION}).map((_, index) => (

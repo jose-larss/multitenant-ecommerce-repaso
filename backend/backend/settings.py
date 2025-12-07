@@ -25,8 +25,6 @@ SECRET_KEY = 'django-insecure-zsm5tn1i&pk33-@w-^su4zb_u#t(cy9o&qzt*)0km3%7j5-c=e
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -142,6 +140,10 @@ CORS_ALLOWED_ORIGINS = [
 
 
 CORS_ALLOW_CREDENTIALS = True
+#CORS_EXPOSE_HEADERS = ["Set-Cookie"]
+
+ALLOWED_HOSTS = [] #"localhost", "127.0.0.1"
+
 
 AUTH_USER_MODEL = "users.CustomUser"
 
@@ -151,6 +153,7 @@ REST_FRAMEWORK = {
         # por defecto esto espera tokens que se envian en el header
         # esto va a usar cookies
         'users.authentication.CookieJWTAuthentication',
+        #'rest_framework.authentication.SessionAuthentication',
     ),
     'DEFAULT_PAGINATION_CLASS': 'shop.pagination.DefaultCursorPagination',
     #'PAGE_SIZE': 3
@@ -162,3 +165,16 @@ SIMPLE_JWT = {
     "ROTATE_REFRESH_TOKENS": False,
     "BLACKLIST_AFTER_ROTATION": False,   
 }
+"""
+# ===========
+# COOKIES
+# ===========
+
+SESSION_COOKIE_NAME = "sessionid"
+SESSION_COOKIE_SAMESITE = "None"
+SESSION_COOKIE_SECURE = False          # SOLO LOCAL
+SESSION_COOKIE_DOMAIN = "localhost"
+
+CSRF_COOKIE_SAMESITE = "None"
+CSRF_COOKIE_SECURE = False if DEBUG else True
+"""

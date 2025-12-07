@@ -6,6 +6,6 @@ urlpatterns = [
     path("me/", me_view),
     path("register/", user_registration_view),
     path("login/", login_view),
-    path("logout/", logout_view),
+    path("logout/", logout_view, name="api-logout"),
     path("refresh/", CookieTokenRefreshView.as_view()),
 ]

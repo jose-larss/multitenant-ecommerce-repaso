@@ -28,7 +28,7 @@ const apiService = {
     },
 
     getInfiniteQueries: async function (url: string): Promise<any> {
-        //console.log("URL========>", url)
+    
         try {
             const response = await fetch(`${url}`, {
                 method: 'GET',
@@ -79,7 +79,7 @@ const apiService = {
         }
     },
 
-    get: async function (url: string): Promise<any> {
+    get: async function (url: string ): Promise<any> {
      
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${url}`, {
@@ -101,14 +101,30 @@ const apiService = {
                 */
                 
                 const refreshToken = await apiService.getRefreshToken() || null;
-                console.log("REFRESH TOKEN ES: ", refreshToken.message)
-                if (refreshToken.message) {
+                console.log("REFRESH TOKEN ES: ", refreshToken, refreshToken.message)
+                if (refreshToken?.message) {
                     // Reintentamos la MISMA petición, SOLO una vez
                     return apiService.get(url);
-                }
-                
                     
+                } 
+                /*
+                if (refreshToken?.error) {
+                    // Refresh falló → logout real
+                    if (typeof window !== "undefined") {
+                        window.location.href = "/sign-in"; 
+                    }
+                }
+                /*else {
+                    if (refreshToken?.message === undefined) {
+                        // Refresh falló → logout real
+                        //if (typeof window !== "undefined") {
+                            window.location.href = "/sign-in"; 
+                        //}
+                    }     
+                }*/
             }
+
+                 
             //si la respuesta es exitosa
             const data = response.json()
             return data;

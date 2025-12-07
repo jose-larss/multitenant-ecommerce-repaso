@@ -6,8 +6,7 @@ import { dehydrate, HydrationBoundary } from "@tanstack/react-query"
 import type { SearchParams } from "nuqs/server"
 import { loadProductFilters } from "@/modules/products/hooks/useProductsFilterServer"
 
-import { ProductListViewCategory } from "@/modules/products/views/product-list-view-category"
-import { DEFAULT_LIMIT_PAGINATION } from "../../../../constants"
+import { ProductListView } from "@/modules/products/views/product-list-view"
 
 
 interface Props {
@@ -28,13 +27,13 @@ const Page = async ({params, searchParams}: Props) => {
         queryFn: ({pageParam}) => {
             return apiService.getInfiniteQueries(pageParam)
         },
-        initialPageParam: `${process.env.NEXT_PUBLIC_API_URL}/products/${category}?minPrice=${filters.minPrice}&maxPrice=${filters.maxPrice}&tags=${[filters.tags]}&sort=${filters.sort}&limit=${DEFAULT_LIMIT_PAGINATION}`,
+        initialPageParam: `${process.env.NEXT_PUBLIC_API_URL}/products/${category}?minPrice=${filters.minPrice}&maxPrice=${filters.maxPrice}&tags=${[filters.tags]}&sort=${filters.sort}`,
     })
 
     return (
         <>
             <HydrationBoundary state={dehydrate(queryClient)}>
-                <ProductListViewCategory category={category}/>
+                <ProductListView category={category}/>
             </HydrationBoundary>
         </>
         

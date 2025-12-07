@@ -1,71 +1,32 @@
-"use client";
-
-import { useQuery } from "@tanstack/react-query";
-
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Input } from "@/components/ui/input";
-import { Progress } from "@/components/ui/progress";
-import { Textarea } from "@/components/ui/textarea";
+import { loadProductFilters } from "@/modules/products/hooks/useProductsFilterServer";
+import type { SearchParams } from "nuqs/server"
+import { getQueryClient } from "../query-client";
 import apiService from "../services/apiServices";
+import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
+import { ProductListView } from "@/modules/products/views/product-list-view";
 
-/*
-const fetchSession = async () => {
-    try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/me/`, {
-            method: "GET",
-            credentials: "include",   // 👈 equivalente a withCredentials: true
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-        if (!response.ok) {
-            //Manejo de errores si el backend devuelve un estado no existoso
-            const errorData = await response.json();
-            //console.error("Error en el backend", errorData)
-            return errorData
-        }
-        //si la respuesta es exitosa
-        const data = response.json()
-        console.log(data)
-        return data;
-
-    } catch (error) {
-        //Manejo de errores de red o conexion
-        console.error("Error al enviar datos:", error)
-    }
+interface Props {
+    searchParams: Promise<SearchParams>;
 }
-*/
 
+const Home = async ({searchParams}: Props) => {
+    const filters = await loadProductFilters(searchParams)
 
-const Home = () => {
-  //const {data, isLoading, error} = useQuery({queryKey: ['products'], queryFn: () => apiService.getNoCacheNoCredentials("/products/"),})
+    const queryClient = getQueryClient()
+    await queryClient.prefetchInfiniteQuery({
+        queryKey: ['products', filters.minPrice, filters.maxPrice, filters.tags, filters.sort], 
+        queryFn: ({pageParam}) => {
+            return apiService.getInfiniteQueries(pageParam)
+        },
+        initialPageParam: `${process.env.NEXT_PUBLIC_API_URL}/products?minPrice=${filters.minPrice}&maxPrice=${filters.maxPrice}&tags=${[filters.tags]}&sort=${filters.sort}`,
+    })
 
-  //if (isLoading) return <p>Cargando...</p>
-  //if (error) return <p>Error cargando sesión</p>
-
-  return (
-    <div className="p-4">
-      <div className="flex flex-col gap-y-4">
-        <div>
-          <Button variant={"elevated"}>Soy un botón</Button>
-        </div>
-        <div>
-          <Input placeholder="Soy un input"/>
-        </div>
-        <div>
-          <Progress value={50}/>
-        </div>
-        <div>
-          <Textarea placeholder="Soy un text area"/>
-        </div>
-        <div>
-          <Checkbox />
-        </div>
-      
-      </div>
-      
-    </div>
-  );
+    return (
+        <>
+            <HydrationBoundary state={dehydrate(queryClient)}>
+                <ProductListView />
+            </HydrationBoundary>
+        </>
+    );
 }
 export default Home;
