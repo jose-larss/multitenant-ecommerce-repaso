@@ -1,3 +1,7 @@
+from django.http import HttpResponseRedirect
+from django.contrib.auth import login
+from django.conf import settings
+
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.generics import RetrieveUpdateAPIView, CreateAPIView
 from rest_framework.views import APIView
@@ -84,9 +88,14 @@ class CookieTokenRefreshView(TokenRefreshView):
         
 
 
-@api_view(['POST'])
+@api_view(['GET']) #POST
 def logout_view(request):
-    
+
+    # 1. Logout del admin
+    from django.contrib.auth import logout as django_logout
+    django_logout(request)
+
+     # 2. Blacklist del refresh token
     refresh_token = request.COOKIES.get("refresh_token")
 
     if refresh_token:
@@ -96,11 +105,18 @@ def logout_view(request):
         except Exception as e:
             return Response({"error": "Token invalidado" + str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
-    response = Response({"message": "Deslogado satisfactoriamente"}, status=status.HTTP_200_OK)  
+    # 3. Crear respuesta
+    response = HttpResponseRedirect("http://localhost:3000/logout")
 
+    #response = Response({"message": "Deslogado satisfactoriamente"}, status=status.HTTP_200_OK)  
+
+    # 4. Borrar cookies JWT
     response.delete_cookie("access_token")
     response.delete_cookie("refresh_token")
-    
+
+    # 5. Borrar cookie del admin
+    response.delete_cookie("sessionid")
+
     return response
 
 """
@@ -131,11 +147,18 @@ def login_view(request):
     if serializer.is_valid():
         user = serializer.validated_data
 
+        # 🔥 Crear sesión para Django Admin
+        #login(request, user)
+
         refresh = RefreshToken.for_user(user)
         access_token = str(refresh.access_token)
 
+        # Guardar la sesión
+        #request.session.save()
+
         response = Response({"user": CustomUserSerializer(user).data},status=status.HTTP_200_OK)
 
+        # Enviar cookies JWT (si quieres)
         response.set_cookie(
             key="access_token",
             value=access_token,
@@ -155,7 +178,21 @@ def login_view(request):
             path="/",
             max_age = 60 * 60 * 24  # 1 día
         )
-    
+
+        """
+        # Enviar la cookie de sesión
+        response.set_cookie(
+            key=settings.SESSION_COOKIE_NAME,
+            value=request.session.session_key,
+            httponly=True,
+            secure=settings.SESSION_COOKIE_SECURE,
+            samesite=settings.SESSION_COOKIE_SAMESITE,
+            path="/",
+            domain="localhost",
+            max_age=settings.SESSION_COOKIE_AGE,
+        )
+        """
+
         return response
 
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

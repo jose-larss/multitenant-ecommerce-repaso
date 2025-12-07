@@ -1,13 +1,14 @@
 import { Suspense } from "react"
 import { ProductSort } from "../ui/components/product-sort"
 import { ProductFilters } from "../ui/components/products-filters"
-import { ProductListCategorySkeleton, ProductsListCategory } from "../ui/components/products-list-category"
+import { ProductListSkeleton, ProductsList } from "../ui/components/products-list";
 
 interface Props {
     category?: string;
+    subcategory?: string;
 };
 
-export const ProductListViewCategory = ({category}: Props) => {
+export const ProductListView = ({category, subcategory}: Props) => {
     return(
         <div className="p-4 lg:px-12 py-8 flex flex-col gap-4">  
             
@@ -24,9 +25,10 @@ export const ProductListViewCategory = ({category}: Props) => {
                 </div>
             
                 <div className="lg:col-span-4 xl:col-span-6">
-                    <Suspense fallback={<ProductListCategorySkeleton/>}>
-                        <ProductsListCategory 
+                    <Suspense fallback={<ProductListSkeleton/>}>
+                        <ProductsList
                             category={category}
+                            subcategory={subcategory}
                         />
                     </Suspense>
                 </div>

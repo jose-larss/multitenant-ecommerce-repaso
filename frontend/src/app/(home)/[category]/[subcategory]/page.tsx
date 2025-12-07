@@ -2,7 +2,7 @@ import { getQueryClient } from "@/app/query-client"
 import apiService from "@/app/services/apiServices"
 import { loadProductFilters } from "@/modules/products/hooks/useProductsFilterServer"
 
-import { ProductListViewSubcategory } from "@/modules/products/views/product-list-view-subcategory"
+import { ProductListView } from "@/modules/products/views/product-list-view"
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query"
 import { SearchParams } from "nuqs/server"
 
@@ -20,7 +20,8 @@ const Page = async ({params, searchParams}: Props) => {
     const filters = await loadProductFilters(searchParams) 
 
     const queryClient = getQueryClient()
-    await queryClient.prefetchInfiniteQuery({queryKey: ['products', category, subcategory, filters.minPrice, filters.maxPrice, filters.tags, filters.sort], 
+    await queryClient.prefetchInfiniteQuery({
+        queryKey: ['products', category, subcategory, filters.minPrice, filters.maxPrice, filters.tags, filters.sort], 
         queryFn: ({pageParam}) => {
             return apiService.getInfiniteQueries(pageParam)
         },
@@ -30,7 +31,7 @@ const Page = async ({params, searchParams}: Props) => {
     return (
         <>
             <HydrationBoundary state={dehydrate(queryClient)}>
-                <ProductListViewSubcategory 
+                <ProductListView 
                     category={category}
                     subcategory={subcategory}    
                 />

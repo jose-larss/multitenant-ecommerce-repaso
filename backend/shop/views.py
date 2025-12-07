@@ -30,7 +30,7 @@ def list_tags(request):
 
 
 @api_view(['GET'])
-def list_products(request, categorySlug, subCategorySlug=""):
+def list_products(request, categorySlug="", subCategorySlug=""):
     # --- parseo seguro de precios ---
     def parse_decimal(value):
         if value is None or value == "" or value == "null":
@@ -39,10 +39,13 @@ def list_products(request, categorySlug, subCategorySlug=""):
             return Decimal(str(value))
         except (InvalidOperation, ValueError, TypeError):
             return None
+    
+    products = Product.objects.all()
 
     # la variable de javascript va con undefined esto devuelve true
-    category = get_object_or_404(Category, slug=categorySlug)
-    products = Product.objects.filter(category=category)
+    if categorySlug:
+        category = get_object_or_404(Category, slug=categorySlug)
+        products = Product.objects.filter(category=category)
 
     if subCategorySlug:
         subCategory = get_object_or_404(SubCategory, slug=subCategorySlug)
