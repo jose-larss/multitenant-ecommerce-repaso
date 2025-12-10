@@ -1,6 +1,12 @@
 from rest_framework import serializers
 
-from shop.models import Category, SubCategory, Product, Tag
+from shop.models import Category, SubCategory, Product, Tag, Tenant
+
+
+class TenantSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tenant
+        fields = ['id', 'name', 'slug', 'imagen', 'stripeAccountId', 'stripeDetailsSubmitted', 'created_at', 'updated_at']
 
 
 class TagSerializer(serializers.ModelSerializer):
@@ -32,8 +38,9 @@ class CategoryProductSerializer(serializers.ModelSerializer):
 class ProductSerializer(serializers.ModelSerializer):
     category = CategoryProductSerializer(read_only=True)
     subcategory = SubCategorySerializer(read_only=True)
+    tenant = TenantSerializer(read_only=True)
 
     class Meta:
         model = Product
-        fields = ["id", "name", "slug", 
-                  "description", "price", "refundpolicy", 'created_at', 'updated_at', "category", "subcategory"] # a falta de imagen
+        fields = ["id", "name", "slug", 'imagen',
+                  "description", "price", "refundpolicy", 'created_at', 'updated_at', "category", "subcategory", "tenant"] # a falta de imagen

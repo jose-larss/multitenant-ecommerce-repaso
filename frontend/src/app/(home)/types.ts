@@ -8,10 +8,22 @@ export interface CustomCategory {
     subcategorias: CustomCategory[]; // relaccion recursiva (subcategorias)
 }
 
+export interface CustomTenant {
+    id: string;
+    name: string;
+    slug: string;
+    imagen: string, 
+    stripeAccountId: string;
+    stripeDetailsSubmitted: string;
+    created_at: string; 
+    updated_at: string;
+}
+
 export interface CustomProduct {
     id: string;
     name: string;
     slug: string; 
+    imagen: string;
     description: string; 
     price: number; 
     imagenUrl: string,
@@ -20,6 +32,7 @@ export interface CustomProduct {
     updated_at: string;
     category: CustomCategory;
     subcategory: CustomCategory;
+    tenant: CustomTenant;
 }
 
 export interface CustomTags {

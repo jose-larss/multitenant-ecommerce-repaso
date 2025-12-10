@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from decimal import Decimal, InvalidOperation
 
-from shop.models import Category, SubCategory, Product, Tag
-from shop.serializers import CategorySerializer, ProductSerializer, TagSerializer
+from shop.models import Category, SubCategory, Product, Tag, Tenant
+from shop.serializers import CategorySerializer, ProductSerializer, TagSerializer, TenantSerializer
 
 from rest_framework import status
 from rest_framework.decorators import api_view
@@ -19,6 +19,16 @@ class TagCursorPagination(CursorPagination):
 
 
 @api_view(['GET'])
+def detail_tenant(request, tenantSlug):
+    print(tenantSlug)
+    tenant = get_object_or_404(Tenant, slug=tenantSlug)
+    serializer = TenantSerializer(tenant, context={'request': request})
+
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+
+@api_view(['GET'])
 def list_tags(request):
     tags = Tag.objects.all().order_by("created_at")
     paginator = DefaultCursorPagination()
@@ -30,7 +40,7 @@ def list_tags(request):
 
 
 @api_view(['GET'])
-def list_products(request, categorySlug="", subCategorySlug=""):
+def list_products(request, categorySlug="", subCategorySlug="", tenantSlug=""):
     # --- parseo seguro de precios ---
     def parse_decimal(value):
         if value is None or value == "" or value == "null":
@@ -41,6 +51,10 @@ def list_products(request, categorySlug="", subCategorySlug=""):
             return None
     
     products = Product.objects.all()
+
+    if tenantSlug:
+        tenant = get_object_or_404(Tenant, slug=tenantSlug)
+        products = Product.objects.filter(tenant=tenant)
 
     # la variable de javascript va con undefined esto devuelve true
     if categorySlug:
@@ -79,7 +93,7 @@ def list_products(request, categorySlug="", subCategorySlug=""):
     paginator = DefaultCursorPagination()
     page = paginator.paginate_queryset(products, request)
 
-    serializer = ProductSerializer(page, many=True)
+    serializer = ProductSerializer(page, context = {'request': request}, many=True)
     return paginator.get_paginated_response(serializer.data)
 
 

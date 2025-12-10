@@ -6,8 +6,9 @@ from shop.models import Category, SubCategory, Product, Tag, Tenant
 
 
 class TenantAdmin(admin.ModelAdmin):
-    list_display = ["name", "slug", "stripeAccountId", "stripeDetailsSubmitted"]
+    list_display = ["name", "slug", "imagen", "stripeAccountId", "stripeDetailsSubmitted"]
     list_filter = ["stripeDetailsSubmitted"]
+    list_editable = ["imagen"]
     prepopulated_fields = {'slug': ('name',)}
     search_fields = ["name", "slug", "stripeAccountId"]
     readonly_fields = ["created_at", "updated_at","stripeAccountId", "stripeDetailsSubmitted"]
@@ -29,10 +30,10 @@ class TagAdmin(admin.ModelAdmin):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ["id", "name", "slug", "description", "category", "subcategory", "tenant", "price", "refundpolicy"]
+    list_display = ["id", "name", "slug", "description", 'imagen', "category", "subcategory", "tenant", "price", "refundpolicy"]
     prepopulated_fields = {'slug': ('name',)}
     readonly_fields = ["created_at", "updated_at"]
-    list_editable = ["tenant"]
+    list_editable = ["tenant", "imagen"]
     #exclude = ("tenant",)
     filter_horizontal = ["tags"]
     list_filter = ["category", 'tags']

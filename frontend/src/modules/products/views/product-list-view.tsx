@@ -3,12 +3,16 @@ import { ProductSort } from "../ui/components/product-sort"
 import { ProductFilters } from "../ui/components/products-filters"
 import { ProductListSkeleton, ProductsList } from "../ui/components/products-list";
 
+
 interface Props {
     category?: string;
     subcategory?: string;
+    tenant?: string;
+    //para que se vea menos delgada la card del tenant
+    narrowView?: boolean;
 };
 
-export const ProductListView = ({category, subcategory}: Props) => {
+export const ProductListView = ({category, subcategory, tenant, narrowView}: Props) => {
     return(
         <div className="p-4 lg:px-12 py-8 flex flex-col gap-4">  
             
@@ -25,10 +29,12 @@ export const ProductListView = ({category, subcategory}: Props) => {
                 </div>
             
                 <div className="lg:col-span-4 xl:col-span-6">
-                    <Suspense fallback={<ProductListSkeleton/>}>
+                    <Suspense fallback={<ProductListSkeleton narrowView={narrowView}/>}>
                         <ProductsList
                             category={category}
                             subcategory={subcategory}
+                            tenant={tenant}
+                            narrowView={narrowView}
                         />
                     </Suspense>
                 </div>

@@ -7,7 +7,13 @@ urlpatterns = [
     path('tags/', views.list_tags),
 
     path('products/', views.list_products),
+
+    # URLs de productos más específicas
+    path('products/<slug:tenantSlug>/', views.list_products),
     path('products/<slug:categorySlug>/<slug:subCategorySlug>/', views.list_products),
     path('products/<slug:categorySlug>/', views.list_products),
+
+    path('tenant/detail/<slug:tenantSlug>/', views.detail_tenant),
+    
     
 ]
