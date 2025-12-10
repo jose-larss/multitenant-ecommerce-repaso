@@ -9,13 +9,17 @@ import { ProductCard, ProductCardSkeleton } from "./product-card";
 import { DEFAULT_LIMIT_PAGINATION } from "../../../../../constants";
 import { Button } from "@/components/ui/button";
 import { InboxIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface ProductListProps {
     category?: string;
     subcategory?: string;
+    tenant?: string;
+    //para que se vea menos delgada la card del tenant
+    narrowView?: boolean;
 }
 
-export const ProductsList = ({category, subcategory}: ProductListProps) => {
+export const ProductsList = ({category, subcategory, tenant, narrowView}: ProductListProps) => {
     const [filters] = useProductsFilters();
 
     let params = `${process.env.NEXT_PUBLIC_API_URL}/products?minPrice=${filters.minPrice}&maxPrice=${filters.maxPrice}&tags=${[filters.tags]}&sort=${filters.sort}`
@@ -24,12 +28,16 @@ export const ProductsList = ({category, subcategory}: ProductListProps) => {
     if (subcategory !== undefined && category !== undefined) {
         params = `${process.env.NEXT_PUBLIC_API_URL}/products/${category}/${subcategory}?minPrice=${filters.minPrice}&maxPrice=${filters.maxPrice}&tags=${[filters.tags]}&sort=${filters.sort}`
         queryKeys = ['products', category, subcategory, filters.minPrice, filters.maxPrice, filters.tags, filters.sort]
-    } else {
-        if (category !== undefined){
-            params = `${process.env.NEXT_PUBLIC_API_URL}/products/${category}?minPrice=${filters.minPrice}&maxPrice=${filters.maxPrice}&tags=${[filters.tags]}&sort=${filters.sort}`
-            queryKeys = ['products', category, filters.minPrice, filters.maxPrice, filters.tags, filters.sort]
-        }
+
+    } else if (category !== undefined){
+        params = `${process.env.NEXT_PUBLIC_API_URL}/products/${category}?minPrice=${filters.minPrice}&maxPrice=${filters.maxPrice}&tags=${[filters.tags]}&sort=${filters.sort}`
+        queryKeys = ['products', category, filters.minPrice, filters.maxPrice, filters.tags, filters.sort]
+
+    } else  if(tenant !== undefined) {
+        params = `${process.env.NEXT_PUBLIC_API_URL}/products/${tenant}?minPrice=${filters.minPrice}&maxPrice=${filters.maxPrice}&tags=${[filters.tags]}&sort=${filters.sort}`
+        queryKeys = ['products', tenant, filters.minPrice, filters.maxPrice, filters.tags, filters.sort]
     }
+    
     
     const {data,isLoading,hasNextPage,isFetchingNextPage,fetchNextPage,} = useSuspenseInfiniteQuery({
         queryKey: queryKeys ,
@@ -51,16 +59,19 @@ export const ProductsList = ({category, subcategory}: ProductListProps) => {
     
     return(
         <>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">        
+            <div className={cn(
+                "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4",
+                narrowView && "lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3"
+            )}>        
                 {data?.pages.map((page) => 
-                    page.results.map ((product: CustomProduct) => (
+                    page.results.map ((product: CustomProduct) => (            
                         <ProductCard 
                             key={product.id}
                             id={product.id}
                             name={product.name}
-                            imageUrl={product.imagenUrl}
-                            authorUsername="J. luciano"
-                            authorImageUrl={undefined}
+                            imagen={product?.imagen}
+                            tenantSlug={product.tenant?.slug}
+                            tenantImageUrl={product.tenant?.imagen}
                             reviewRating={3}
                             reviewCount={5}
                             price={product.price}
@@ -85,9 +96,12 @@ export const ProductsList = ({category, subcategory}: ProductListProps) => {
     )
 }
 
-export const ProductListSkeleton = () => {
+export const ProductListSkeleton = ({narrowView}: ProductListProps) => {
     return(
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
+        <div className={cn (
+                "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4",
+                narrowView && "lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3"
+            )}>
             {Array.from({length: DEFAULT_LIMIT_PAGINATION}).map((_, index) => (
                 <ProductCardSkeleton key={index}/>
             ))}
