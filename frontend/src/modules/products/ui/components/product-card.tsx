@@ -1,4 +1,4 @@
-import { generateTenantSlugURL } from "@/lib/utils"
+import { formatCurrent, generateTenantSlugURL } from "@/lib/utils"
 import { StarIcon } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
@@ -26,7 +26,7 @@ export const ProductCard = ({id, name, imagen, tenantSlug, tenantImageUrl, revie
     }
   
     return(
-        <Link href={`/product/${id}`}>
+        <Link href={`${generateTenantSlugURL(tenantSlug)}/products/${id}`}>
             <div className="border rounded-md bg-white overflow-hidden h-full flex flex-col">
                 <div className="relative w-full h-64">
                     <Image alt={name} fill src={imagen || "/placeholder.png"} className="object-contain"/>
@@ -63,11 +63,7 @@ export const ProductCard = ({id, name, imagen, tenantSlug, tenantImageUrl, revie
                 <div className="p-4">
                     <div className="relative px-2 py-1 border bg-blue-400 w-fit">
                         <p className="text-sm font-medium">
-                            {new Intl.NumberFormat("en-ES", {
-                                style: "currency",
-                                currency: "EUR",
-                                maximumFractionDigits: 2
-                            }).format(Number(price))}
+                            {formatCurrent(price)}
                         </p>
                     </div>
                 </div>
