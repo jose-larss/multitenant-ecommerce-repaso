@@ -9,3 +9,11 @@ export function cn(...inputs: ClassValue[]) {
 export function generateTenantSlugURL(tenantSlug: string){
   return `/tenants/${tenantSlug}`
 }
+
+export function formatCurrent(value: number | string) {
+  return  new Intl.NumberFormat("es-ES", {
+              style: "currency",
+              currency: "EUR",
+              maximumFractionDigits: 2
+          }).format(Number(value))
+}

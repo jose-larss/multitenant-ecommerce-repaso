@@ -19,6 +19,14 @@ class TagCursorPagination(CursorPagination):
 
 
 @api_view(['GET'])
+def detail_product(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    serializer = ProductSerializer(product, context={'request': request})
+
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(['GET'])
 def detail_tenant(request, tenantSlug):
     print(tenantSlug)
     tenant = get_object_or_404(Tenant, slug=tenantSlug)

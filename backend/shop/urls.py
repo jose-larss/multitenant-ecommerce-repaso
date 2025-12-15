@@ -9,6 +9,7 @@ urlpatterns = [
     path('products/', views.list_products),
 
     # URLs de productos más específicas
+    path('products/detail/<str:product_id>/', views.detail_product),
     path('products/<slug:tenantSlug>/', views.list_products),
     path('products/<slug:categorySlug>/<slug:subCategorySlug>/', views.list_products),
     path('products/<slug:categorySlug>/', views.list_products),
